@@ -1,4 +1,4 @@
-//mentorat
+//VERSION DU PROJET AVEC NOTES (format cours)
 
 
 //en théorie
@@ -7,7 +7,7 @@
 //mettre en relation les deux+afficher les données sur la gallery ou dans la gallery puis innerhtml ou appendchild
 
 
-//en partique
+//en pratique
 //déclarer les variables
 //on prévoit une fonction pour 
 //déclarer une variable category vide
@@ -56,18 +56,62 @@ displayWorks = () => {
 //j'appelle getWorks pour exécuter
 getWorks();
 
-let category = [];
-const filtres = document.querySelector('.filtres');
+let categories = [];
+const filtresContainer = document.querySelector('.filtres');
 
 getCategory = () => {
+    //fetch les categories qui ont "name" et "id" (id qui va sevir pour filtrer ensuite)
     fetch("http://localhost:5678/api/categories")
+    //traduit en json
     .then((rep) => rep.json())
     .then((data) => {
+    //stocké dans un tableau
     categories = data;
-    displayFiltres ();
+    //appel de la fonction pour afficher les bouttons filtres
+    displayFiltres();
     })
 }
 
+//création d'une fonction qui va afficher les filtres de category
 displayFiltres = () => {
-    category.forEach( )
+    //fonction for each pour créer les <button>
+    categories.forEach( category => {
+        //chaque filtre est un <button> on utilise createElement car on va utiliser un addeventlistener dessus plus tard
+        const filtre = document.createElement('button');
+        //on définit le texte dans l'élément comme correspondant au contenu de name DANS category = category.name
+        filtre.textContent = category.name;
+        //on insère chaque filtre dans le parent filtresContainer étant la div avec la class filtres
+        filtresContainer.appendChild(filtre);
+    })
 }
+
+//je déclenche la fonction qui appelle aussi displayFiltres, les images s'affichent correctement
+getCategory();
+
+//je déclares filtres 
+const filtres = document.querySelectorAll('.filtres');
+
+//je crée une fonction qui va s'occuper de cacher les éléments dont l'id ne corresponds pas à la catégorie
+displayById = (id) => {
+    filtres.forEach(filtre => {
+        if (filtre.id === categoryId) {
+            //défini la propriété CSS block à l'élément 'filtre' avec la propriété DOM 'style'
+            //https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style
+            filtre.style.display = 'block';
+        }
+        else {
+            //cacher les autres éléments
+            filtre.style.display = 'none';
+        }
+    });
+};
+
+//et pour chaque élément de filtres, au click, je vais invoquer cette fonction
+filtres.forEach(filtre => {
+    filtre.addEventListener('click', () => {
+        displayById();
+        console.log(categories.id);
+    });
+});
+
+//comment je compare les deux id ?? et je dois utiliser categoryId ou categories.id ou category.id ??
