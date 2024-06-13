@@ -74,6 +74,9 @@ getCategory = () => {
 
 //création d'une fonction qui va afficher les filtres de category
 displayFiltres = () => {
+    document.getElementById('BtnTous').addEventListener('click', () => {
+        displayById(0);
+    })
     //fonction for each pour créer les <button>
     categories.forEach( category => {
         //chaque filtre est un <button> on utilise createElement car on va utiliser un addeventlistener dessus plus tard
@@ -82,6 +85,10 @@ displayFiltres = () => {
         filtre.textContent = category.name;
         //on insère chaque filtre dans le parent filtresContainer étant la div avec la class filtres
         filtresContainer.appendChild(filtre);
+        filtre.addEventListener('click', () => {
+            displayById(category.id);
+            })
+        //changer la couleur des boutons cliqués retirer aux autres éléments et attribuer au bouton cliqué (mettre la class sur le bouton)
     })
 }
 
@@ -91,27 +98,41 @@ getCategory();
 //je déclares filtres 
 const filtres = document.querySelectorAll('.filtres');
 
-//je crée une fonction qui va s'occuper de cacher les éléments dont l'id ne corresponds pas à la catégorie
 displayById = (id) => {
-    filtres.forEach(filtre => {
-        if (filtre.id === categoryId) {
-            //défini la propriété CSS block à l'élément 'filtre' avec la propriété DOM 'style'
-            //https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style
-            filtre.style.display = 'block';
+    //nettoie tout ce qui existe
+    gallery.innerHTML ="";
+    //même boucle que works mais avec une condition w doit être = à id pour que ça marche
+    works.forEach( w => {
+        if(w.categoryId === id || id === 0)
+        {
+        gallery.innerHTML +=
+        `
+        <figure>
+        <img src="${w.imageUrl}" alt="${w.title}">
+        <figcaption>${w.title}</figcaption>
+        </figure>
+        `
         }
-        else {
-            //cacher les autres éléments
-            filtre.style.display = 'none';
-        }
-    });
+        //on aurait aussi pu utiliser else mais beaucoup plus long || id===0 est une meilleure pratique
+        // else if (id===0){
+        //     gallery.innerHTML +=
+        //     `
+        //     <figure>
+        //     <img src="${w.imageUrl}" alt="${w.title}">
+        //     <figcaption>${w.title}</figcaption>
+        //     </figure>
+        //     `
+        // }
+        //else if est pertinant s'il y a un autre traitement, si on en répte pas le code
+    })
 };
 
-//et pour chaque élément de filtres, au click, je vais invoquer cette fonction
-filtres.forEach(filtre => {
-    filtre.addEventListener('click', () => {
-        displayById();
-        console.log(categories.id);
-    });
-});
+//il y avait déjà une boucle à la création des boutons donc tu peux mettre tout ça là haut!!
+// filtres.forEach(filtre => {
+//     filtre.addEventListener('click', () => {
+//         displayById();
+//         console.log(categories.id);
+//     });
+// });
 
 //comment je compare les deux id ?? et je dois utiliser categoryId ou categories.id ou category.id ??

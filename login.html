@@ -25,16 +25,18 @@
 <main>
     <section class="login">
         <h2>Log in</h2>
-        <div class="input">
-            <p>E-mail</p>
-            <input>
-        </div>
-        <div class="input">
-            <p>Mot de passe</p>
-            <input>
-        </div>
-        <button class="connect-button">Se connecter</button><br>
-        <a href="">Mot de passe oublié</a>
+        <form id="LoginForm">
+            <div class="input">
+                <label>E-mail</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="input">
+                <label>Mot de passe</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="connect-button">Se connecter</button><br>
+            <a href="">Mot de passe oublié</a>
+        </form>
     </section>
 </main>
 
@@ -45,5 +47,6 @@
 		</ul>
 	</nav>
 </footer>
+<script src="./assets/js/login.js"></script>
 </body>
 </html>
