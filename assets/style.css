@@ -208,6 +208,7 @@ footer nav ul {
 	background-color: rgb(253, 248, 242);
 }
 
+
 .login {
 	height: 500px;
 	text-align: center;
@@ -218,20 +219,24 @@ footer nav ul {
 	font-size: 35px;
 }
 
-.login label {
-	font-size: 15px;
-	padding: 10px;
-	margin-left: 0px;
+.input {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
-.input {
+.input label {
+	font-size: 17px;
+	margin: 8px;
 }
 
 .input input {
+	margin-left: 33%;
+	margin-bottom: 15px;
 	font-size: 18px;
 	border: 0px;
 	height: 50px;
-	width: 450px;
+	width: 400px;
 	box-shadow: 5px 5px 10px rgb(223, 222, 222);
 }
 

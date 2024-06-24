@@ -16,10 +16,14 @@
 //et ensuite fonction displayfiltres avec createElement
 //addeventlistener avec click et if id=
 
+const isLogin = sessionStorage.getItem("token") ? true : false;
+
+console.log(isLogin);
+
 let works = [];
 const gallery = document.querySelector('.gallery');
 
-//toujours mieux de fetch dans une fonction
+//toujours fetch dans une fonction
 getWorks = () => {
     fetch("http://localhost:5678/api/works")
     .then((rep) => rep.json())
@@ -127,12 +131,30 @@ displayById = (id) => {
     })
 };
 
-//il y avait déjà une boucle à la création des boutons donc tu peux mettre tout ça là haut!!
-// filtres.forEach(filtre => {
-//     filtre.addEventListener('click', () => {
-//         displayById();
-//         console.log(categories.id);
-//     });
-// });
+// Gestion Affichage Admin / Public
 
-//comment je compare les deux id ?? et je dois utiliser categoryId ou categories.id ou category.id ??
+LoginBtn = document.getElementById('LoginBtn');
+
+LoginBtn.addEventListener('click', ()=> {
+    //si on est co et qu'on clique dessus c'est qu'on veut déco
+    if(isLogin) {
+        //on nettoie la sessionstorage pour se déconnecter
+        sessionStorage.clear();
+        //si je me déco, je retourne sur la page d'accueil
+        window.location.replace('./index.html')
+    }
+    else
+    {
+        //si on est pas co et qu'on clique, on va sur login
+        window.location.replace('./login.html')
+    }
+})
+
+if(isLogin){
+    filtresContainer.style.display='none';
+    LoginBtn.innerHTML ="Logout"
+}
+else
+{
+    LoginBtn.innerHTML ="Login"
+}
