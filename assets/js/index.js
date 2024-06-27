@@ -18,8 +18,6 @@
 
 const isLogin = sessionStorage.getItem("token") ? true : false;
 
-console.log(isLogin);
-
 let works = [];
 const gallery = document.querySelector('.gallery');
 
@@ -138,23 +136,79 @@ LoginBtn = document.getElementById('LoginBtn');
 LoginBtn.addEventListener('click', ()=> {
     //si on est co et qu'on clique dessus c'est qu'on veut déco
     if(isLogin) {
-        //on nettoie la sessionstorage pour se déconnecter
+        //clean sessionstorage -> déco
         sessionStorage.clear();
-        //si je me déco, je retourne sur la page d'accueil
+        //retour sur la page d'accueil
         window.location.replace('./index.html')
     }
     else
     {
-        //si on est pas co et qu'on clique, on va sur login
+        //click->déco->page d'accueil
         window.location.replace('./login.html')
     }
 })
 
 if(isLogin){
     filtresContainer.style.display='none';
-    LoginBtn.innerHTML ="Logout"
+    LoginBtn.innerHTML ="logout"
 }
 else
 {
-    LoginBtn.innerHTML ="Login"
+    LoginBtn.innerHTML ="login"
 }
+modale = () => {
+    modale = document.getElementById("modale");
+    modale.style.visibility = (modale.style.visibility == "visible") ? "hidden" : "visible";
+}
+
+//
+// let worksAdmin = [];
+// const galleryAdmin = document.querySelector('.modale__gallery');
+
+//     getWorksAdmin = () => {
+//         fetch("http://localhost:5678/api/works")
+//         .then((rep) => rep.json())
+//         .then((data) => {
+//             worksAdmin = data;
+//             displayWorksAdmin();
+//         })
+//     }
+
+//     displayWorksAdmin = () => {
+//         worksAdmin.forEach( w => {
+//             let img = document.createElement('img');
+//             img.classList.add('modale__img');
+//             img.src = w.imageUrl;
+//             img.alt = w.title;
+
+//             galleryAdmin.appendChild(img);
+//         })
+//     }
+
+//     getWorksAdmin();
+
+const galleryAdmin = document.querySelector('.modale__gallery');
+
+getWorksAdmin = () => {
+    fetch("http://localhost:5678/api/works")
+    .then((rep) => rep.json())
+    .then((data) => {
+        works = data;
+        displayWorksAdmin();
+    })
+}
+
+displayWorksAdmin = () => {
+    works.forEach( w => {
+        let img = document.createElement('img');
+        img.classList.add('modale__img');
+        img.src = w.imageUrl;
+        img.alt = w.title;
+        let deleteIcon = document.createElement('span');
+        
+
+        galleryAdmin.appendChild(img);
+    })
+}
+
+getWorksAdmin();

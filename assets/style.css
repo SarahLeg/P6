@@ -90,9 +90,15 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-li:hover {
+/**rajouté*/
+#LoginBtn:hover, li:hover {
 	color: #B1663C;
 }
+#LoginBtn {
+	color: black;
+	text-decoration: none;
+}
+/** par moi **/
 #introduction {
 	display: flex;
 	align-items: center;
@@ -159,7 +165,6 @@ margin: auto;
 }
 #contact > * {
 	text-align: center;
-
 }
 #contact h2{
 	margin-bottom: 20px;
@@ -170,7 +175,6 @@ margin: auto;
 	display: flex;
 	flex-direction: column;
 }
-
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -184,7 +188,6 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -195,7 +198,6 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
@@ -207,29 +209,23 @@ footer nav ul {
 .login-page {
 	background-color: rgb(253, 248, 242);
 }
-
-
 .login {
 	height: 500px;
 	text-align: center;
 }
-
 .login h2 {
 	margin: 150px 0px 50px;
 	font-size: 35px;
 }
-
 .input {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
-
 .input label {
 	font-size: 17px;
 	margin: 8px;
 }
-
 .input input {
 	margin-left: 33%;
 	margin-bottom: 15px;
@@ -239,7 +235,6 @@ footer nav ul {
 	width: 400px;
 	box-shadow: 5px 5px 10px rgb(223, 222, 222);
 }
-
 .connect-button {
 	font-size: 18px;
 	color: white;
@@ -249,8 +244,60 @@ footer nav ul {
 	width: 200px;
 	border-radius: 50px;
 }
-
 .login a {
 	font-size: 16px;
 	color: black;
+}
+
+/**Modale**/
+
+#modale {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+#modale div {
+	position: absolute;
+	left: 11%;
+	top: 600px;
+	width: 30%;
+	height: 700px;
+	background-color: rgb(227, 223, 223);
+	border-radius: 10px;
+	padding: 40px;
+	text-align: center;
+	font-size: 30px;
+	border: 0px;
+  }
+.modale__img{
+	width: 85px;
+	margin-left: 8px;
+	margin-bottom: 35px;
+}
+.modale__gallery {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 45px 80px 50px;
+	align-items: baseline;
+	border-bottom: 1px solid;
+}
+#addPicture {
+	background: #1D6154;
+	color: white;
+	padding: 10px;
+	width: 50%;
+	height: 50px;
+	font-size: 18px;
+	border-radius: 50px;
+}
+.x {
+	margin-left: 90%;
+	height: 50px;
+	width: 50px;
+	padding: 15px;
+}
+.x i {
+	width: 50px;
 }
