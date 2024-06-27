@@ -161,32 +161,6 @@ modale = () => {
     modale.style.visibility = (modale.style.visibility == "visible") ? "hidden" : "visible";
 }
 
-//
-// let worksAdmin = [];
-// const galleryAdmin = document.querySelector('.modale__gallery');
-
-//     getWorksAdmin = () => {
-//         fetch("http://localhost:5678/api/works")
-//         .then((rep) => rep.json())
-//         .then((data) => {
-//             worksAdmin = data;
-//             displayWorksAdmin();
-//         })
-//     }
-
-//     displayWorksAdmin = () => {
-//         worksAdmin.forEach( w => {
-//             let img = document.createElement('img');
-//             img.classList.add('modale__img');
-//             img.src = w.imageUrl;
-//             img.alt = w.title;
-
-//             galleryAdmin.appendChild(img);
-//         })
-//     }
-
-//     getWorksAdmin();
-
 const galleryAdmin = document.querySelector('.modale__gallery');
 
 getWorksAdmin = () => {
@@ -205,8 +179,10 @@ displayWorksAdmin = () => {
         img.src = w.imageUrl;
         img.alt = w.title;
         let deleteIcon = document.createElement('span');
-        
-
+        deleteIcon.classList.add('fa-trash');
+        deleteIcon.classList.add('fa-solid');
+        deleteIcon.style.cursor = 'pointer';
+        galleryAdmin.appendChild(deleteIcon);
         galleryAdmin.appendChild(img);
     })
 }

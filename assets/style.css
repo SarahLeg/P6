@@ -270,6 +270,15 @@ footer nav ul {
 	font-size: 30px;
 	border: 0px;
   }
+.x {
+	border: none;
+	background: white;
+	margin-left: 90%;
+	height: 50px;
+	width: 50px;
+	padding: 15px;
+	font-size: 18px;
+}
 .modale__img{
 	width: 85px;
 	margin-left: 8px;
@@ -280,8 +289,16 @@ footer nav ul {
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	margin: 45px 80px 50px;
-	align-items: baseline;
 	border-bottom: 1px solid;
+}
+.divImg {
+}
+.fa-trash {
+	background: black;
+	color: white;
+	font-size: 12px;
+	width: 20px;
+	height: 20px;
 }
 #addPicture {
 	background: #1D6154;
@@ -291,13 +308,4 @@ footer nav ul {
 	height: 50px;
 	font-size: 18px;
 	border-radius: 50px;
-}
-.x {
-	margin-left: 90%;
-	height: 50px;
-	width: 50px;
-	padding: 15px;
-}
-.x i {
-	width: 50px;
 }
