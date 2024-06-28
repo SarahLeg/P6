@@ -168,9 +168,12 @@ modale = document.getElementById("modale");
 modale.style.display='none';
 modale1 = document.getElementById("modale1");
 modale2 = document.getElementById("modale2");
+//la modale 2 ne s'affichera pas sans event
 modale2.style.display='none';
 closeModale = document.querySelector('.closeBtn');
+backBtn = document.querySelector(".backBtn");
 addPicture = document.getElementById("addPicture");
+//deleteIcon = document.querySelector('.fa-trash');
 
 const galleryAdmin = document.querySelector('.modale__gallery');
 
@@ -197,6 +200,11 @@ modifyBtn.addEventListener('click', () => {
 
 closeModale.addEventListener('click', () => {
     modale.style.display='none';
+})
+
+backBtn.addEventListener('click', () => {
+    modale2.style.display='none';
+    modale1.style.display='inline';
 })
 
 //à voir comment display l'une et pas l'autre et rendre closeModale fonctionnelle dans les deux cas

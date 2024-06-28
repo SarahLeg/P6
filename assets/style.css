@@ -253,7 +253,7 @@ footer nav ul {
 
 #modify {
 	position: absolute;
-	top: 68%;
+	top: 75.5%;
 	left: 56%;
 	border: 0px;
 	background-color: white;
@@ -270,7 +270,7 @@ footer nav ul {
 }
 #modale div {
 	position: absolute;
-	left: 11%;
+	left: 13%;
 	top: 600px;
 	width: 30%;
 	height: 700px;
@@ -279,7 +279,6 @@ footer nav ul {
 	padding: 40px;
 	text-align: center;
 	font-size: 30px;
-	border: 0px;
 }
 .closeBtn, .backBtn {
 	border: none;
@@ -296,7 +295,7 @@ footer nav ul {
 	margin-left: 0;
 }
 .modale__img{
-	width: 85px;
+	width: 75px;
 	margin-left: 8px;
 	margin-bottom: 35px;
 }
@@ -304,7 +303,7 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	margin: 45px 80px 50px;
+	margin: 50px;
 	border-bottom: 1px solid;
 }
 .fa-trash {
@@ -313,8 +312,10 @@ footer nav ul {
 	font-size: 12px;
 	width: 20px;
 	height: 20px;
+	z-index: 2;
 }
 #addPicture {
+	margin-top: 35px;
 	background: #1D6154;
 	color: white;
 	padding: 10px;
