@@ -251,6 +251,17 @@ footer nav ul {
 
 /**Modale**/
 
+#modify {
+	position: absolute;
+	top: 68%;
+	left: 56%;
+	border: 0px;
+	background-color: white;
+	font-size: 17px;
+}
+.fa-pencil {
+	margin: 10px;
+}
 #modale {
 	position: absolute;
 	width: 100%;
@@ -263,21 +274,26 @@ footer nav ul {
 	top: 600px;
 	width: 30%;
 	height: 700px;
-	background-color: rgb(227, 223, 223);
+	background-color: rgb(237, 237, 237);
 	border-radius: 10px;
 	padding: 40px;
 	text-align: center;
 	font-size: 30px;
 	border: 0px;
-  }
-.x {
+}
+.closeBtn, .backBtn {
 	border: none;
 	background: white;
-	margin-left: 90%;
 	height: 50px;
 	width: 50px;
 	padding: 15px;
 	font-size: 18px;
+}
+.closeBtn {
+	margin-left: 90%;
+}
+.backBtn {
+	margin-left: 0;
 }
 .modale__img{
 	width: 85px;
@@ -290,8 +306,6 @@ footer nav ul {
 	flex-wrap: wrap;
 	margin: 45px 80px 50px;
 	border-bottom: 1px solid;
-}
-.divImg {
 }
 .fa-trash {
 	background: black;

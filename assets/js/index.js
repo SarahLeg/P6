@@ -14,7 +14,7 @@
 //prévoir une fonction getcategory
 //tester de manière statique les boutons de filtres et ensuite les supprimer et les créer dynamiquement
 //et ensuite fonction displayfiltres avec createElement
-//addeventlistener avec click et if id=
+//addeventlistener avec click
 
 const isLogin = sessionStorage.getItem("token") ? true : false;
 
@@ -132,6 +132,8 @@ displayById = (id) => {
 // Gestion Affichage Admin / Public
 
 LoginBtn = document.getElementById('LoginBtn');
+//je déclare la bouton modifier
+modifyBtn = document.getElementById('modify');
 
 LoginBtn.addEventListener('click', ()=> {
     //si on est co et qu'on clique dessus c'est qu'on veut déco
@@ -155,22 +157,22 @@ if(isLogin){
 else
 {
     LoginBtn.innerHTML ="login"
+    //le bouton modifier ne s'affiche que si logged in
+    modifyBtn.style.display='none';
 }
-modale = () => {
-    modale = document.getElementById("modale");
-    modale.style.visibility = (modale.style.visibility == "visible") ? "hidden" : "visible";
-}
+
+//Gestion de la modale
+
+modale = document.getElementById("modale");
+//la modale ne s'affichera pas sans event
+modale.style.display='none';
+modale1 = document.getElementById("modale1");
+modale2 = document.getElementById("modale2");
+modale2.style.display='none';
+closeModale = document.querySelector('.closeBtn');
+addPicture = document.getElementById("addPicture");
 
 const galleryAdmin = document.querySelector('.modale__gallery');
-
-getWorksAdmin = () => {
-    fetch("http://localhost:5678/api/works")
-    .then((rep) => rep.json())
-    .then((data) => {
-        works = data;
-        displayWorksAdmin();
-    })
-}
 
 displayWorksAdmin = () => {
     works.forEach( w => {
@@ -187,4 +189,18 @@ displayWorksAdmin = () => {
     })
 }
 
-getWorksAdmin();
+modifyBtn.addEventListener('click', () => {
+    galleryAdmin.innerHTML='';
+    modale.style.display='inline';
+    displayWorksAdmin();
+})
+
+closeModale.addEventListener('click', () => {
+    modale.style.display='none';
+})
+
+//à voir comment display l'une et pas l'autre et rendre closeModale fonctionnelle dans les deux cas
+addPicture.addEventListener('click', () => {
+    modale1.style.display='none';
+    modale2.style.display='inline';
+})

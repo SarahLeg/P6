@@ -11,14 +11,21 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
 
 <div id="modale">
-	<div>
-		<button class="x"><i class="fa-solid fa-x"></i></button>
+	<div id="modale1">
+		<button class="closeBtn"><i class="fa-solid fa-x"></i></button>
 		<p>Galerie photo</p>
 		<section class="modale__gallery"></section>
 		<button id="addPicture">Ajouter une photo</button>
+	</div>
+	<div id="modale2">
+		<button class="backBtn"><i class="fa-solid fa-arrow-left"></i></button>
+		<button class="closeBtn"><i class="fa-solid fa-x"></i></button>
+		<p>Ajout photo</p>
+
 	</div>
 </div>
 
@@ -47,7 +54,7 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		<!--<button>Modifer</button>-->
+		<button id="modify"><i class="fa-solid fa-pencil"></i>modifier</button>
 		<div class="filtres">
 			<button id="BtnTous">Tous</button>
 		</div>
