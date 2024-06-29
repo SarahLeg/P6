@@ -164,7 +164,7 @@ else
 //Gestion de la modale
 
 modale = document.getElementById("modale");
-//la modale ne s'affichera pas sans event
+//la modale ne s'affichera pas sans event (click modifier)
 modale.style.display='none';
 modale1 = document.getElementById("modale1");
 modale2 = document.getElementById("modale2");
@@ -173,7 +173,6 @@ modale2.style.display='none';
 closeModale = document.querySelector('.closeBtn');
 backBtn = document.querySelector(".backBtn");
 addPicture = document.getElementById("addPicture");
-//deleteIcon = document.querySelector('.fa-trash');
 
 const galleryAdmin = document.querySelector('.modale__gallery');
 
@@ -187,8 +186,10 @@ displayWorksAdmin = () => {
         deleteIcon.classList.add('fa-trash');
         deleteIcon.classList.add('fa-solid');
         deleteIcon.style.cursor = 'pointer';
-        galleryAdmin.appendChild(deleteIcon);
-        galleryAdmin.appendChild(img);
+        let divImgIcon = document.createElement('article');
+        galleryAdmin.appendChild(divImgIcon);
+        divImgIcon.appendChild(deleteIcon);
+        divImgIcon.appendChild(img);
     })
 }
 
@@ -211,4 +212,15 @@ backBtn.addEventListener('click', () => {
 addPicture.addEventListener('click', () => {
     modale1.style.display='none';
     modale2.style.display='inline';
+})
+
+deleteWork = () => {
+//ou deleteById ?
+//sur swagger ça dit requête delete /works/{id}
+//
+//il faudra aussi clear l'élément html correspondant à l'id au moment du click pour que l'objet disparaisse tout de suite sans recharger la page (sans oublier sa div)
+}
+
+deleteIcon.addEventListener('click', () =>{
+    deleteWork();
 })
