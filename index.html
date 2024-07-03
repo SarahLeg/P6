@@ -22,20 +22,27 @@
 		<button id="addPicture">Ajouter une photo</button>
 	</div>
 	<div id="modale2">
+		<div class="buttons-modale2">
 			<button class="backBtn"><i class="fa-solid fa-arrow-left"></i></button>
 			<button class="closeBtn"><i class="fa-solid fa-x"></i></button>
-		<p>Ajout photo</p>
-		<form>
-				<div class="box-add-picture">
+		</div>
+		<form id="addWorkForm">	
+				<p>Ajout photo</p>
+				<div class="custom-file-input">
 					<i class="fa-regular fa-image"></i>
-					<input type="submit" value="Ajouter photo">
+					<label for="imageFile">
+						+ Ajouter photo
+					</label>
+					<input type="file" id="imageFile">
 					<p>jpg, png : 4mo max</p>
 				</div>
-				<label>Titre</label>
-				<input type="text">
-				<label>Catégorie</label>
-				<input type="text">
-				<input type="submit" value="Valider">
+				<div class="div-modale">
+					<label for="imageTitle">Titre</label>
+					<input type="text" id="imageTitle">
+					<label for="imageCategory">Catégorie</label>
+					<input type="number" id="imageCategory">
+				</div>
+				<input type="submit" value="Valider" class="valider-btn">
 		</form>
 	</div>
 </section>
@@ -67,7 +74,7 @@
 		<h2>Mes Projets</h2>
 		<button id="modify"><i class="fa-solid fa-pencil"></i>modifier</button>
 		<div class="filtres">
-			<button id="BtnTous">Tous</button>
+			<button id="BtnTous" class="activeBtn">Tous</button>
 		</div>
 		<div class="gallery">
 		</div>
@@ -94,6 +101,7 @@
 		</ul>
 	</nav>
 </footer>
+<script src="./assets/js/modale.js"></script>
 <script src="./assets/js/index.js"></script>
 </body>
 </html>

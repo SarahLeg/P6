@@ -22,7 +22,7 @@ let works = [];
 const gallery = document.querySelector('.gallery');
 
 //toujours fetch dans une fonction
-getWorks = () => {
+getWorks = async () => {
     fetch("http://localhost:5678/api/works")
     .then((rep) => rep.json())
     //la flèche ici est return (bcp plus simple)
@@ -38,6 +38,7 @@ getWorks = () => {
 
 //afficher les travaux encore une fonction avec un nom évident
 displayWorks = () => {
+    gallery.innerHTML="";
     works.forEach( w => {
         //check ce qu'il y a dans le tableau mais pareil que console log data donc on prévise un élément
         //console.log(w.title)
@@ -76,8 +77,10 @@ getCategory = () => {
 
 //création d'une fonction qui va afficher les filtres de category
 displayFiltres = () => {
-    document.getElementById('BtnTous').addEventListener('click', () => {
+    document.getElementById('BtnTous').addEventListener('click', (event) => {
         displayById(0);
+        activeFiltresStyle(event.target);
+        //event.target sont les paramètres de l'evenement + cible donc il sait sur quoi tu as cliqué (voir chatGPT)
     })
     //fonction for each pour créer les <button>
     categories.forEach( category => {
@@ -87,11 +90,19 @@ displayFiltres = () => {
         filtre.textContent = category.name;
         //on insère chaque filtre dans le parent filtresContainer étant la div avec la class filtres
         filtresContainer.appendChild(filtre);
-        filtre.addEventListener('click', () => {
+        filtre.addEventListener('click', (event) => {
             displayById(category.id);
+            //ici le paramètre peut être filtre car on vient de le déclarer pas besoin de paramètres
+            activeFiltresStyle(filtre);
             })
         //changer la couleur des boutons cliqués retirer aux autres éléments et attribuer au bouton cliqué (mettre la class sur le bouton)
     })
+}
+
+const activeFiltresStyle = (btn) => {
+    const activeBtn = document.querySelector(".activeBtn");
+    activeBtn.classList.remove('activeBtn');
+    btn.classList.add('activeBtn');
 }
 
 //je déclenche la fonction qui appelle aussi displayFiltres, les images s'affichent correctement
@@ -133,7 +144,7 @@ displayById = (id) => {
 
 LoginBtn = document.getElementById('LoginBtn');
 //je déclare la bouton modifier
-modifyBtn = document.getElementById('modify');
+
 
 LoginBtn.addEventListener('click', ()=> {
     //si on est co et qu'on clique dessus c'est qu'on veut déco
@@ -161,66 +172,3 @@ else
     modifyBtn.style.display='none';
 }
 
-//Gestion de la modale
-
-modale = document.getElementById("modale");
-//la modale ne s'affichera pas sans event (click modifier)
-modale.style.display='none';
-modale1 = document.getElementById("modale1");
-modale2 = document.getElementById("modale2");
-//la modale 2 ne s'affichera pas sans event
-modale2.style.display='none';
-closeModale = document.querySelector('.closeBtn');
-backBtn = document.querySelector(".backBtn");
-addPicture = document.getElementById("addPicture");
-
-const galleryAdmin = document.querySelector('.modale__gallery');
-
-displayWorksAdmin = () => {
-    works.forEach( w => {
-        let img = document.createElement('img');
-        img.classList.add('modale__img');
-        img.src = w.imageUrl;
-        img.alt = w.title;
-        let deleteIcon = document.createElement('span');
-        deleteIcon.classList.add('fa-trash');
-        deleteIcon.classList.add('fa-solid');
-        deleteIcon.style.cursor = 'pointer';
-        let divImgIcon = document.createElement('article');
-        galleryAdmin.appendChild(divImgIcon);
-        divImgIcon.appendChild(deleteIcon);
-        divImgIcon.appendChild(img);
-    })
-}
-
-modifyBtn.addEventListener('click', () => {
-    galleryAdmin.innerHTML='';
-    modale.style.display='inline';
-    displayWorksAdmin();
-})
-
-closeModale.addEventListener('click', () => {
-    modale.style.display='none';
-})
-
-backBtn.addEventListener('click', () => {
-    modale2.style.display='none';
-    modale1.style.display='inline';
-})
-
-//à voir comment display l'une et pas l'autre et rendre closeModale fonctionnelle dans les deux cas
-addPicture.addEventListener('click', () => {
-    modale1.style.display='none';
-    modale2.style.display='inline';
-})
-
-deleteWork = () => {
-//ou deleteById ?
-//sur swagger ça dit requête delete /works/{id}
-//
-//il faudra aussi clear l'élément html correspondant à l'id au moment du click pour que l'objet disparaisse tout de suite sans recharger la page (sans oublier sa div)
-}
-
-deleteIcon.addEventListener('click', () =>{
-    deleteWork();
-})
