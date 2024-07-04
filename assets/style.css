@@ -252,8 +252,17 @@ footer nav ul {
 	color: black;
 }
 
-/**Modale1**/
+/**Modale**/
 
+.overlay {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+}
 #modify {
 	position: absolute;
 	top: 75.5%;
@@ -267,17 +276,23 @@ footer nav ul {
 }
 #modale {
 	position: absolute;
-	z-index: 1;
+	z-index: 1001;
 	left: 33%;
-	top: 600px;
-	width: 30%;
+	top: 63%;
+	width: 35%;
 	height: 700px;
-	background-color: rgb(237, 237, 237);
+	background-color: white;
 	border-radius: 10px;
 	text-align: center;
 	font-size: 30px;
 }
+.buttons-modale {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
 .closeBtn, .backBtn {
+	margin: 10px;
 	border: none;
 	background: white;
 	height: 50px;
@@ -285,30 +300,30 @@ footer nav ul {
 	font-size: 18px;
 }
 .closeBtn {
-	margin-left: 80%;
+	margin-left: auto;
 }
-.backBtn {
-	margin-left: 0;
-}
-
 /**Modale1**/
 
 .modale__img{
-	width: 75px;
-	margin-bottom: 20px;
+	width: 100%;
 }
 .modale__gallery {
 	display: flex;
-	justify-content: flex-start;
+	gap: 10px;
 	flex-wrap: wrap;
-	margin: 50px;
-	border-bottom: 1px solid;
-	padding-bottom: 50px;
+	margin: 10px 100px 40px;
+	border-bottom: 1px solid #B3B3B3;
+	padding-bottom: 75px;
 }
 .modale__gallery span {
 	position: relative;
-	left: 68px;
-	top: -100px;
+	left: 20px;
+	top: 25px;
+}
+.modale__gallery article {
+	width: 83px;
+	height: 100px;
+	margin-bottom: 25px;
 }
 .fa-trash {
 	background: black;
@@ -319,14 +334,13 @@ footer nav ul {
 	padding-top: 3px;
 }
 #addPicture {
-	margin-top: 35px;
 	background: #1D6154;
 	color: white;
 	padding: 10px;
-	width: 50%;
-	height: 50px;
-	font-size: 18px;
+	width: 40%;
+	font-size: 16px;
 	border-radius: 50px;
+	border: none;
 }
 .fa-arrow-left {
 	align-self: flex-start;
@@ -346,44 +360,66 @@ form {
 
 /**Modale2**/
 
-.buttons-modale2 {
-	display: flex;
-}
 #imageFile {
 	display: none;
 }
 .custom-file-input {
-	margin: 50px;
-	padding: 15px;
-	background-color: rgb(213, 228, 243);
+	margin: 40px 100px 30px;
+	padding: 20px 0px 20px;
+	background-color: rgb(233, 240, 247);
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	align-items: center;
 }
 .custom-file-input i {
-	font-size: 100px;
-	color: rgb(167, 167, 167);
+	font-size: 65px;
+	color: #CBD6DC;
 }
 .custom-file-input label {
-	width: 40%;
-	font-size: 18px;
+	color: #306685;
+	width: 35%;
+	font-size: 14px;
 	padding: 10px;
-	background-color: rgb(167,167,167);
+	background-color: #CBD6DC;
 	border-radius: 30px;
 	cursor: pointer;
 }
 .custom-file-input p {
-	font-size: 15px;
+	font-size: 10px;
+	color: #444444;
 }
 .div-modale {
-	margin: 50px;
+	display: flex;
+	gap: 12px;
+	margin: 10px 100px 10px;
+	padding: 0px 0px 40px;
 	display: flex;
 	flex-direction: column;
+	border-bottom: 1px solid #B3B3B3;	
 }
-
+.div-modale label {
+	text-align: left;
+	font-size: 14px;
+}
+.div-modale input, select {
+	padding-left: 15px;
+	background-color: white;
+	border: none;
+	box-shadow: 5px 5px 15px 3px rgb(223, 222, 222);
+	width: 100%;
+	font-size: 14px;
+	color: #575656;
+	height: 50px;
+	margin-bottom: 15px;
+}
+.div-modale input {
+	width: 96%;
+}
 .valider-btn {
 	padding: 10px;
-	width: 55% !important;
-	background-color: rgb(167,167,167) !important;
+	background-color: #B3B3B3 !important;
+	width: 40% !important;
+	font-size: 16px;
+	border: none;
 }

@@ -1,5 +1,7 @@
 //Gestion de la modale
 
+overlay = document.querySelector('.overlay');
+overlay.style.display='none';
 modale = document.getElementById("modale");
 //la modale ne s'affichera pas sans event (click modifier)
 modale.style.display='none';
@@ -39,11 +41,14 @@ modifyBtn = document.getElementById('modify');
 modifyBtn.addEventListener('click', () => {
     galleryAdmin.innerHTML='';
     modale.style.display='inline';
+    overlay.style.display='inline';
     displayWorksAdmin();
 })
 
 closeModale.addEventListener('click', () => {
     modale.style.display='none';
+    modale2.style.display='none';
+    overlay.style.display='none';
 })
 
 backBtn.addEventListener('click', () => {
@@ -110,7 +115,7 @@ addWorkForm.addEventListener('submit', () => {
     fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: { 
-            
+
         },
         body: JSON.stringify(newWork),
     })
