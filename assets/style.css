@@ -291,7 +291,7 @@ footer nav ul {
 	justify-content: space-between;
 	flex-direction: row;
 }
-.closeBtn, .backBtn {
+.closeBtn, .closeBtn2, .backBtn {
 	margin: 10px;
 	border: none;
 	background: white;
@@ -302,6 +302,7 @@ footer nav ul {
 .closeBtn {
 	margin-left: auto;
 }
+
 /**Modale1**/
 
 .modale__img{
@@ -333,7 +334,7 @@ footer nav ul {
 	height: 15px;
 	padding-top: 3px;
 }
-#addPicture {
+#addPictureBtn {
 	background: #1D6154;
 	color: white;
 	padding: 10px;
@@ -365,7 +366,7 @@ form {
 }
 .custom-file-input {
 	margin: 40px 100px 30px;
-	padding: 20px 0px 20px;
+	padding: 20px 0px 15px;
 	background-color: rgb(233, 240, 247);
 	display: flex;
 	flex-direction: column;

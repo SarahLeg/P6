@@ -22,7 +22,7 @@ let works = [];
 const gallery = document.querySelector('.gallery');
 
 //toujours fetch dans une fonction
-getWorks = async () => {
+getWorks = () => {
     fetch("http://localhost:5678/api/works")
     .then((rep) => rep.json())
     //la flèche ici est return (bcp plus simple)
@@ -171,4 +171,3 @@ else
     //le bouton modifier ne s'affiche que si logged in
     modifyBtn.style.display='none';
 }
-
