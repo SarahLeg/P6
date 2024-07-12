@@ -157,7 +157,8 @@ nav li {
 	grid-row-gap: 20px;
 }
 .gallery img {
-	width: 100%;
+	width: 300px;
+	height: 450px;
 }
 #contact {
 	width: 50%;
@@ -264,9 +265,9 @@ footer nav ul {
 	z-index: 1000;
 }
 #modify {
-	position: absolute;
-	top: 75.5%;
-	left: 56%;
+	position: relative;
+	top: -70px;
+	left: 63%;
 	border: 0px;
 	background-color: white;
 	font-size: 17px;
@@ -306,7 +307,8 @@ footer nav ul {
 /**Modale1**/
 
 .modale__img{
-	width: 100%;
+	width: 80px;
+	height: 110px;
 }
 .modale__gallery {
 	display: flex;
@@ -364,10 +366,14 @@ form {
 #imageFile {
 	display: none;
 }
-.custom-file-input {
+.box-custom-file-input {
+	padding: 0;
+	height: 164px;
 	margin: 40px 100px 30px;
-	padding: 20px 0px 15px;
 	background-color: rgb(233, 240, 247);
+}
+.custom-file-input {
+	padding: 20px 0px 15px;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -423,4 +429,9 @@ form {
 	width: 40% !important;
 	font-size: 16px;
 	border: none;
+}
+.upload-picture {
+	width: 30%;
+	height: 100%;
+	margin: 0;
 }

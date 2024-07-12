@@ -64,7 +64,7 @@ closeModale2.addEventListener('click', () => {
     modale.style.display='none';
     modale2.style.display='none';
     overlay.style.display='none';
-    console.log('oui');
+    clearForm();
 });
 
 overlay.addEventListener('click', () => {
@@ -100,6 +100,7 @@ addWorkForm = document.getElementById('addWorkForm');
 const imageFile = document.getElementById('imageFile');
 imageFile.addEventListener('change' , () => {
     setAddBtn();
+    displayUploadPicture();
 });
 
 const imageTitle = document.getElementById('imageTitle');
@@ -113,8 +114,7 @@ imageCategory.addEventListener('change' , () => {
 });
 
 const isFormValid = () => {
-    // le ! exprime l'inverse de la conditon
-    // 
+    // le ! exprime l'inverse de la conditon donc s'il n'y a pas d'image, return false (files[0] veut dire la première image)
     if(!imageFile.files[0]){
         return false
     }
@@ -138,6 +138,7 @@ const setAddBtn = () => {
         addBtn.classList.add('valider-btn');
     }
 };
+setAddBtn();
 
 addWorkForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -164,27 +165,71 @@ addWorkForm.addEventListener('submit', (e) => {
             console.log(newWork.id);
             getWorks();
             displayWorksAdmin();
+            modale2.style.display='none';
+            modale1.style.display='inline';
+            clearForm();
         })
     }
     else
     {
-        alert('Tous les champs sont obligatoires')
+        alert('Tous les champs sont obligatoires');
     }
 });
 
-//select dynamique modale2 
+boxCustomFileInput = document.querySelector('.box-custom-file-input');
+customFileInput = document.querySelector(".custom-file-input");
 
-let optionsAdded = false;
+displayUploadPicture = () => {
+    if(imageFile.files[0]){
+        const uploadPicture = document.createElement('img');
+        uploadPicture.src = URL.createObjectURL(imageFile.files[0]);
+        uploadPicture.classList.add("upload-picture");
+        boxCustomFileInput.appendChild(uploadPicture);
+        customFileInput.style.display='none';
+    }
+};
 
-displayImageCategories = () => {
-    categories.forEach( category => {
-        const option = document.createElement('option');
-        option.textContent = category.name;
-        option.value = category.id;
-        imageCategory.appendChild(option);
-    })
-}
+clearForm = () => {
+    const uploadPicture = document.querySelector(".upload-picture");
+    document.getElementById("addWorkForm").reset();
+    boxCustomFileInput.removeChild(uploadPicture);
+    customFileInput.style.display='flex';
+};
+
+
+// Select dynamique modale2 mon travail+chatGPT
+
+// mon travail
+// displayImageCategories = () => {
+//     categories.forEach( category => {
+//         const option = document.createElement('option');
+//         option.textContent = category.name;
+//         option.value = category.id;
+//         imageCategory.appendChild(option);
+//     })
+// }
 
 // imageCategory.addEventListener('click', () => {
 //     displayImageCategories();
 // })
+
+
+//correction chatGPT à voir avec mentor
+let categoriesAdded = false;
+
+//if c'est false alors tu exécutes pour faire true et donc au deuxième clic, comme c'est true, ça ne réexécute pas
+displayImageCategories = () => {
+    if (!categoriesAdded) {
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.textContent = category.name;
+            option.value = category.id;
+            imageCategory.appendChild(option);
+        });
+        categoriesAdded = true;
+    }
+};
+
+imageCategory.addEventListener('click', () => {
+    displayImageCategories();
+});
