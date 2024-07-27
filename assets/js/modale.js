@@ -1,17 +1,20 @@
-overlay = document.querySelector(".overlay");
+const overlay = document.querySelector(".overlay");
 overlay.style.display='none';
-modifyBtn = document.getElementById('modify');
-modale = document.getElementById("modale");
-//la modale ne s'affichera pas sans event (click modifier)
+
+const modifyBtn = document.getElementById('modify');
+
+const modale = document.getElementById("modale");
 modale.style.display='none';
-modale1 = document.getElementById("modale1");
-modale2 = document.getElementById("modale2");
-//la modale 2 ne s'affichera pas sans event
+
+const modale1 = document.getElementById("modale1");
+
+const modale2 = document.getElementById("modale2");
 modale2.style.display='none';
-closeModale = document.querySelector(".closeBtn");
-closeModale2 = document.querySelector(".closeBtn2");
-backBtn = document.querySelector(".backBtn");
-addPictureBtn = document.getElementById("addPictureBtn");
+
+const closeModale = document.querySelector(".closeBtn");
+const closeModale2 = document.querySelector(".closeBtn2");
+const backBtn = document.querySelector(".backBtn");
+const addPictureBtn = document.getElementById("addPictureBtn");
 
 const galleryAdmin = document.querySelector('.modale__gallery');
 
@@ -25,9 +28,6 @@ displayWorksAdmin = () => {
         img.src = w.imageUrl;
         img.alt = w.title;
         let deleteIcon = document.createElement('span');
-        deleteIcon.addEventListener('click', () => {
-            deleteWork(w.id);
-        })
         deleteIcon.classList.add('fa-trash');
         deleteIcon.classList.add('fa-solid');
         deleteIcon.style.cursor = 'pointer';
@@ -35,6 +35,11 @@ displayWorksAdmin = () => {
         galleryAdmin.appendChild(divImgIcon);
         divImgIcon.appendChild(deleteIcon);
         divImgIcon.appendChild(img);
+        deleteIcon.addEventListener('click', () => {
+            if (confirm("Êtes-vous sûr(e) de vouloir supprimer cette photo?")) {
+            deleteWork(w.id);
+            }
+        })
     })
 };
 
@@ -78,12 +83,11 @@ addPictureBtn.addEventListener('click', () => {
     modale2.style.display='inline';
 });
 
-//Suppression/ajout travaux avec conditions (form complet)
+//Suppression/ajout travaux
 
 deleteWork = (id) => {
     fetch("http://localhost:5678/api/works/" + id, {
         method: "DELETE",
-        //en-tête ou je renseigne l'autorisation d'erreur qu'on avait stocké sur la session, c'était pour ça qu'on l'a stocké
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
@@ -114,11 +118,9 @@ imageCategory.addEventListener('change' , () => {
 });
 
 const isFormValid = () => {
-    // le ! exprime l'inverse de la conditon donc s'il n'y a pas d'image, return false (files[0] veut dire la première image)
     if(!imageFile.files[0]){
         return false
     }
-    //à chaque return false l'éxécution s'arrête sinon ça continue jusqu'à true
     if(imageTitle.value == ""){
         return false
     }
@@ -142,13 +144,11 @@ setAddBtn();
 
 addWorkForm.addEventListener('submit', (e) => {
     e.preventDefault();
-//avec new on instancie un objet du type FormData qu'on appelle data (plus haut formData était une erreur)
     if(isFormValid()) {
         const data = new FormData();
         data.append('title' , imageTitle.value);
         data.append('category' , parseInt(imageCategory.value));
         data.append('image', imageFile.files[0]);
-        //bien respecter les noms attendus dans le back end. title category et image
         fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
@@ -157,12 +157,9 @@ addWorkForm.addEventListener('submit', (e) => {
         },
         body: data,
         })
-        //on envoie les data direct sans stringify car c'est une image
         .then((response) => response.json())
         .then((newWork) => {
             works.push(newWork);
-            // works = works.filter((w) => w.id !=id)
-            console.log(newWork.id);
             getWorks();
             displayWorksAdmin();
             modale2.style.display='none';
@@ -197,27 +194,10 @@ clearForm = () => {
 };
 
 
-// Select dynamique modale2 mon travail+chatGPT
+// Select dynamique modale2
 
-// mon travail
-// displayImageCategories = () => {
-//     categories.forEach( category => {
-//         const option = document.createElement('option');
-//         option.textContent = category.name;
-//         option.value = category.id;
-//         imageCategory.appendChild(option);
-//     })
-// }
-
-// imageCategory.addEventListener('click', () => {
-//     displayImageCategories();
-// })
-
-
-//correction chatGPT à voir avec mentor
 let categoriesAdded = false;
 
-//if c'est false alors tu exécutes pour faire true et donc au deuxième clic, comme c'est true, ça ne réexécute pas
 displayImageCategories = () => {
     if (!categoriesAdded) {
         categories.forEach(category => {
