@@ -62,7 +62,6 @@ closeModale.addEventListener('click', () => {
     modale.style.display='none';
     modale2.style.display='none';
     overlay.style.display='none';
-    console.log('oui');
 });
 
 closeModale2.addEventListener('click', () => {

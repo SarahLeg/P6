@@ -62,7 +62,12 @@ displayById = (id) => {
 }
 
 displayFiltres = () => {
-    document.getElementById('BtnTous').addEventListener('click', (event) => {
+    const BtnTous = document.createElement('button');
+    BtnTous.id = 'BtnTous';
+    BtnTous.textContent='Tous';
+    BtnTous.classList.add('activeBtn');
+    filtresContainer.appendChild(BtnTous);
+    BtnTous.addEventListener('click', (event) => {
         displayById(0);
         activeFiltresStyle(event.target);
     })
